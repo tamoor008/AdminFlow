@@ -1,0 +1,75 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gradient styles */
+.gradient-bg {
+  background: linear-gradient(135deg, #F708F7 0%, #C708F7 50%, #F76B0B 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #F708F7 0%, #C708F7 50%, #F76B0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button styles */
+.gradient-button {
+  background: linear-gradient(135deg, #F708F7 0%, #C708F7 50%, #F76B0B 100%);
+  border: none;
+  color: white;
+  padding: 14px 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(247, 8, 247, 0.3);
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(247, 8, 247, 0.4);
+}
+
+.gradient-button:active {
+  transform: translateY(0);
+}
+
+.gradient-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Input styles */
+.input-field {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  outline: none;
+  transition: border-color 0.3s;
+  background: white;
+}
+
+.input-field:focus {
+  border-color: #8A53C2;
+}
+
+.input-field::placeholder {
+  color: #999;
+}
+
+/* Card styles */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
