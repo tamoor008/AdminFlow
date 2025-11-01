@@ -73,7 +73,7 @@ function SignIn() {
     <div className="signin-container">
       <div className="signin-card card">
         <div className="signin-header">
-          <h1 className="gradient-text">Admn Portal</h1>
+          <h1 className="gradient-text">Admin Portal</h1>
           <p className="signin-subtitle">Sign in to access the admin dashboard</p>
         </div>
 
