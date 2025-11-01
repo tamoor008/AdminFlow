@@ -7,8 +7,8 @@ import './SignIn.css';
 
 function SignIn() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('admin@gmail.com');
-  const [password, setPassword] = useState('88888888');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -73,7 +73,7 @@ function SignIn() {
     <div className="signin-container">
       <div className="signin-card card">
         <div className="signin-header">
-          <h1 className="gradient-text">Admin Portal</h1>
+          <h1 className="gradient-text">Admn Portal</h1>
           <p className="signin-subtitle">Sign in to access the admin dashboard</p>
         </div>
 
@@ -90,7 +90,7 @@ function SignIn() {
               id="email"
               type="email"
               className="input-field"
-              placeholder="admin@example.com"
+              placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
