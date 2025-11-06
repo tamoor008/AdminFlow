@@ -487,6 +487,52 @@ function Home() {
                           <span className="detail-label">Price:</span>
                           <span className="detail-value">{listing.nonSubscriberPrice || listing.subscriberPrice || 'N/A'}</span>
                         </div>
+                        <div className="detail-item">
+                          <span className="detail-icon">🕐</span>
+                          <span className="detail-label">Created At:</span>
+                          <span className="detail-value">
+                            {(() => {
+                              // Always show the field, even if createdAt is missing or fails
+                              if (!listing.createdAt) {
+                                return 'Not available';
+                              }
+                              
+                              try {
+                                let date;
+                                
+                                // Check if it's a number (timestamp)
+                                if (typeof listing.createdAt === 'number') {
+                                  date = new Date(listing.createdAt);
+                                }
+                                // Check if it's a Firebase timestamp object
+                                else if (listing.createdAt && typeof listing.createdAt === 'object' && listing.createdAt.seconds) {
+                                  date = new Date(listing.createdAt.seconds * 1000);
+                                }
+                                // Treat as string (ISO format)
+                                else if (typeof listing.createdAt === 'string') {
+                                  date = new Date(listing.createdAt);
+                                }
+                                else {
+                                  return 'Not available';
+                                }
+                                
+                                if (isNaN(date.getTime())) {
+                                  console.warn('Invalid date format:', listing.createdAt);
+                                  return 'Invalid date';
+                                }
+                                
+                                return date.toLocaleDateString('en-US', { 
+                                  year: 'numeric', 
+                                  month: 'short', 
+                                  day: 'numeric'
+                                });
+                              } catch (e) {
+                                console.error('Error formatting date:', e, listing.createdAt);
+                                return 'Format error';
+                              }
+                            })()}
+                          </span>
+                        </div>
                       </div>
 
                       {/* Booking Policies Section */}

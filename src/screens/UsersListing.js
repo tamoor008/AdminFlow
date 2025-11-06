@@ -361,6 +361,54 @@ function UsersListing() {
                           </div>
                         </div>
                       )}
+                                <div className="info-row">
+                        <span className="info-icon">🕐</span>
+                        <div className="info-content">
+                          <span className="info-label">Created At</span>
+                          <span className="info-value">
+                            {(() => {
+                              // Always show the field, even if createdAt is missing or fails
+                              if (!listing.createdAt) {
+                                return 'Not available';
+                              }
+                              
+                              try {
+                                let date;
+                                
+                                // Check if it's a number (timestamp)
+                                if (typeof listing.createdAt === 'number') {
+                                  date = new Date(listing.createdAt);
+                                }
+                                // Check if it's a Firebase timestamp object
+                                else if (listing.createdAt && typeof listing.createdAt === 'object' && listing.createdAt.seconds) {
+                                  date = new Date(listing.createdAt.seconds * 1000);
+                                }
+                                // Treat as string (ISO format)
+                                else if (typeof listing.createdAt === 'string') {
+                                  date = new Date(listing.createdAt);
+                                }
+                                else {
+                                  return 'Not available';
+                                }
+                                
+                                if (isNaN(date.getTime())) {
+                                  console.warn('Invalid date format:', listing.createdAt);
+                                  return 'Invalid date';
+                                }
+                                
+                                return date.toLocaleDateString('en-US', { 
+                                  year: 'numeric', 
+                                  month: 'short', 
+                                  day: 'numeric'
+                                });
+                              } catch (e) {
+                                console.error('Error formatting date:', e, listing.createdAt);
+                                return 'Format error';
+                              }
+                            })()}
+                          </span>
+                        </div>
+                      </div>
                     </div>
 
                       {listing.description && (
